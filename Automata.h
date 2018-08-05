@@ -1,11 +1,22 @@
 #include <iostream>
 #include <string>
+#include "Estado.h"
 using namespace std;
 
-class Arista
+class Automata
 {
     public:
-        string simbolo;
-        int estado;
-        Arista(int e, string s);
+        vector<Estado*> estadosA;
+        Estado * inicial;
+        vector<Estado*> aceptacion;
+        vector<string> simbolos;
+        int cantidadA;
+        int cantidadE;
+        void simbolosPossibles(int cantidad, vector<string> simbolo);
+        void setEstadoInicial(Estado * estadoInicial);
+        void setEstadosFinal(vector<Estado*> estadofinal);
+        Estado * getEstado(int posicion);
+        void printArray();
+        void printDFA();
+        bool checkIfCadenaValidaDFA(char cadena[]);
 };
