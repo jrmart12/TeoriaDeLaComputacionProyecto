@@ -1,7 +1,11 @@
 #include <iostream>
-#include <string>
-#include "Estado.h"
+#include <string.h>
+#include <vector>
+#include <sstream>
+#include <fstream>
 using namespace std;
+#include "Estado.h"
+
 
 class Automata
 {
@@ -18,5 +22,5 @@ class Automata
         Estado * getEstado(int posicion);
         void printArray();
         void printDFA();
-        bool checkIfCadenaValidaDFA(char cadena[]);
+        bool checkIfCadenaValida(char cadena[]);
 };
