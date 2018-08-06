@@ -1,3 +1,5 @@
+#ifndef __ESTADO_H__
+#define __ESTADO_H__
 #include <iostream>
 #include <string>
 #include <vector>
@@ -15,3 +17,4 @@ class Estado
         void addTransicion(Arista * n);
         Arista * getTransicion(int n);
 };
+#endif

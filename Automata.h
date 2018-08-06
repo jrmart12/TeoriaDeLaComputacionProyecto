@@ -1,3 +1,5 @@
+#ifndef __AUTOMATA_H__
+#define __AUTOMATA_H__
 #include <iostream>
 #include <string.h>
 #include <vector>
@@ -24,3 +26,4 @@ class Automata
         void printDFA();
         bool checkIfCadenaValida(char cadena[]);
 };
+#endif

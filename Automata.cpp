@@ -53,10 +53,20 @@ void Automata::printDFA(){
 }
 
 bool Automata::checkIfCadenaValida(char cadena[]){
-    int a = strlen(cadena);
-    int b= simbolos.size();
     Estado* temporal=inicial;
+    for(int x=0;x<strlen(cadena);x++){
+        for(int y=0;y<simbolos.size();y++){
+            stringstream s;
+            string siguiente;
+            char current=cadena[x];
+            s<<current;
+            s>>siguiente;
 
+            if(temporal->getTransicion(y)->simbolo==siguiente){
+                temporal=getEstado(temporal->getTransicion(y)->estado);
+            }
+        }
+    }
     
 
 }
