@@ -12,6 +12,7 @@ using namespace std;
 class Automata
 {
     public:
+        Automata();
         vector<Estado*> estadosA;
         Estado * inicial;
         vector<Estado*> aceptacion;

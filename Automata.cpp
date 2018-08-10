@@ -1,6 +1,7 @@
 #include "Automata.h"
 
-Automata::Automata(){
+Automata::Automata()
+{
     cantidadA = 0; 
     cantidadE=0;
 }

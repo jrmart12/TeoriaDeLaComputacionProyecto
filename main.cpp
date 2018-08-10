@@ -1,11 +1,4 @@
-#include <iostream>
-#include <string.h>
-#include <vector>
-#include <sstream>
-#include <fstream>
-#include "Arista.h"
 #include "Automata.h"
-#include "Estado.h"
 
 using namespace std;
 
@@ -26,4 +19,10 @@ int main(){
         simbolosA.push_back(s);
     }
     automa->simbolosPossibles(cantidadSimbolos,simbolosA);
+    string **table;
+    table = new string*[cantidadEstados];
+    for(int a = 0; a<cantidadEstados; a++){
+        table[a] = new string[cantidadSimbolos];
+    }
+    table[0][0] = "-";
 }
