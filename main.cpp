@@ -78,4 +78,17 @@ int main(){
     }
     automa->setEstadosFinal(estadoFinal);
 
+    //DFA
+    vector<int> EstadoSiguiente; //vector de estado siguiente
+    int estadoDFA; 
+    for (int a=1; a<=cantidadEstados;a++){
+        for(int b=1;b<=cantidadSimbolos;b++){
+            cout<<"Estado "<<to_string(a-1)<<"con simbolo "<<simbolosA[b-1]<<"va hacia que Estado?";
+            cin>>estadoDFA;
+            Arista *estadoArista= new Arista(estadoDFA,simbolosA[b-1]); //hago una arista con el estado y el simbolo para llegar a ella
+            automa->getEstado(a-1)->addTransicion(estadoArista); //agrego la transicion a un estado con el simbolo
+            table[a][b] = to_string(estadoDFA);//para cada estado con el simbolo puede llegar a que estado tabla
+        }
+    }
+
 }
