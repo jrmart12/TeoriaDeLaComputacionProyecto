@@ -91,4 +91,15 @@ int main(){
         }
     }
 
+    for(int a = 0; a<cantidadEstados+1; a++){
+        for(int b = 0; b<cantidadSimbolos+1; b++){
+            if(b!=cantidadSimbolos){
+                cout<<table[a][b]<<' ';
+            } else{
+                cout<<table[a][b]<<endl;
+            }                
+        }
+    }
+
+
 }
