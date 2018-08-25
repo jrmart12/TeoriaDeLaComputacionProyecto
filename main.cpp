@@ -45,7 +45,7 @@ int main(){
         }
     }
     
-    for(int a = 0; a<cantidadEstados+1; a++){
+    for(int a = 0; a<cantidadEstados+1; a++){ //for para la impresion de la tabla del automata
         for(int b = 0; b<cantidadSimbolos+1; b++){
             if(b!=cantidadSimbolos){
                 cout<<table[a][b]<<' ';
@@ -54,9 +54,28 @@ int main(){
             }
                         
         }
-    }          
+    }  
 
+    int estadoInicial;
+    int cantidadEstadoFinal;  
+    vector<Estado *> estadoFinal;
 
+    //Estado Inicial
+    cout<<"Estado Inicial:";
+    cin>>estadoInicial; //agarrar el estado inicial del usuario
+    Estado * inicial = automa->getEstado(estadoInicial); //agarro el estado inicial y se lo agrego a una variable
+    automa->setEstadoInicial(inicial); //seteo el estado del usuario final al automata
 
+    //Estado Final
+    cout<<"Cantidad de Estado Finales: ";
+    cin>>cantidadEstadoFinal; //agarrar la cantidad estado final del usuario
+    cout<<"Estado Finales: ";
+    int temporal;
+    for(int cont=0;cont<cantidadEstadoFinal;cont++){ //for para agregar los estados finales al vector finales
+        cin>>temporal;
+        Estado * finales= automa->getEstado(temporal);
+        estadoFinal.push_back(finales);
+    }
+    automa->setEstadosFinal(estadoFinal);
 
 }
