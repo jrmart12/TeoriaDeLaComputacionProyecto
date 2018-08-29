@@ -53,7 +53,7 @@ void Automata::printDFA(){
     }
 }
 
-bool Automata::checkIfCadenaValida(char cadena[]){
+bool Automata::checkIfCadenaValidaDFA(char cadena[]){
     Estado* temporal=inicial;
     for(int x=0;x<strlen(cadena);x++){
         for(int y=0;y<simbolos.size();y++){
@@ -62,12 +62,15 @@ bool Automata::checkIfCadenaValida(char cadena[]){
             char current=cadena[x];
             s<<current;
             s>>siguiente;
-
             if(temporal->getTransicion(y)->simbolo==siguiente){
                 temporal=getEstado(temporal->getTransicion(y)->estado);
             }
         }
     }
-    
-
+    int size = aceptacion.size();
+    for(int a = 0; a<size; a++){
+        if(aceptacion.at(a)->name == temporal->name)
+            return true;
+        }
+        return false;    
 }

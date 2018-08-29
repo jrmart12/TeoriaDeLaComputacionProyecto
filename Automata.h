@@ -25,6 +25,6 @@ class Automata
         Estado * getEstado(int posicion);
         void printArray();
         void printDFA();
-        bool checkIfCadenaValida(char cadena[]);
+        bool checkIfCadenaValidaDFA(char cadena[]);
 };
 #endif

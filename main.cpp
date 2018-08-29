@@ -1,5 +1,5 @@
 #include "Automata.h"
-
+#include "leercadena.h"
 using namespace std;
 
 int main(){
@@ -91,7 +91,7 @@ int main(){
         }
     }
 
-    for(int a = 0; a<cantidadEstados+1; a++){
+    for(int a = 0; a<cantidadEstados+1; a++){//for para imprimir la tabla DFA
         for(int b = 0; b<cantidadSimbolos+1; b++){
             if(b!=cantidadSimbolos){
                 cout<<table[a][b]<<' ';
@@ -100,6 +100,13 @@ int main(){
             }                
         }
     }
+
+    //leere el txt con las cadenas para ver si la cadena es aceptada por el dfa
+    string filename;
+    leercadena *leer = new leercadena();
+    cout<<"Ingrese nombre del archivo: ";
+    cin>>filename;
+    leer->leerCadenaDeArchivo(automa,filename);
 
 
 }
