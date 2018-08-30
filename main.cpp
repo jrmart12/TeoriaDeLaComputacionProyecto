@@ -256,7 +256,10 @@ case 1: //DFA
     cout<<"Ingrese nombre del archivo: ";
     cin>>filename;
     leer->leerCadenaDeArchivoNFA(automa,filename);
-    automa->NFAtoDFA(cantidadEstados,cantidadSimbolos);
+    
+    //automa->NFAtoDFA(cantidadEstados,cantidadSimbolos);
+
+
 
     break;
     }

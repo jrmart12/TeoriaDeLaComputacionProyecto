@@ -117,64 +117,23 @@ int Automata::NFAtoDFA(int cantidadEstados,int cantidadSimbolos){
     string nameNFA[cantidadSimbolos];
     bool masTransiciones=false;
 
+    cout<<to_string(cantidadEstados)<<endl;
+    cout<<to_string(cantidadSimbolos)<<endl;
+    
     for(int x=0;x<cantidadEstados;x++){
         masTransiciones=false;
         for(int y=0;y<cantidadSimbolos;y++){ //inicializador todo en zero
             contador[y]=0;
             nameNFA[y]="";
         }
-
+    cout<<to_string(getEstado(x)->cant)<<endl;
         for(int a=0;a<cantidadSimbolos;a++){
             cout<<"a";
             for(int b=0;b<getEstado(x)->cant;b++){//recorrer los estados
             cout<<"b";
-                if(getEstado(x)->getTransicion(b)->simbolo==simbolos.at(a)){
-                    cout<<"c";
-                    nameNFA[a] += to_string(getEstado(x)->getTransicion(b)->estado);
-                    numEstados[a]=x;
-                    contador[a]++;
-                }
-            }
-        }
-
-        for(int y=0;y<cantidadSimbolos;y++){ //for para verificar si hay mas de 2 transiciones
-            if(contador[y]>1){
-                masTransiciones=true;
-            }
-        }
-
-        for(int y=0;y<namesDFA.size();y++){ //for para ver si existe el estado y si existe lo quita
-            if(namesDFA.at(y)==nameNFA[y]){
-                nameNFA[y]="";
-            }
-        }
-//creacion de el DFA
-        if(masTransiciones==true){
-            Estado * estadosDFA= new Estado(getEstado(x)->name);
-            estadosNFAtoDFA.push_back(estadosDFA);
-            for(int y=0;y<cantidadSimbolos;y++){
-                Arista * temporal = new Arista(numEstados[y],simbolos.at(y));
-                estadosDFA->addTransicion(temporal);
-                if(namesDFA.size()==0){
-                    Estado *estadosDFA1=new Estado(nameNFA[y]);
-                    namesDFA.push_back(nameNFA[y]);
-                    estadosNFAtoDFA.push_back(estadosDFA1);
-                }else if(namesDFA.size()>0){
-                    for(int a=0;a<namesDFA.size();a++){
-                        if(nameNFA[a]!=namesDFA.at(a)){
-                            Estado *estadosDFA2 = new Estado(nameNFA[y]);
-                            namesDFA.push_back(nameNFA[a]);
-                            estadosNFAtoDFA.push_back(estadosDFA2);
-                        }
-                    }
-                }
             }
         }
     }
-        for(int x = 0;x<estadosNFAtoDFA.size();x++){
-            cout<<"Estados que obtuvieron un cambio: "<<estadosNFAtoDFA.at(x)->name<<endl;
-        }
-        return 0;        
 }
 
 bool Automata::checkIfCadenaValidaNFAe(string cadena){
