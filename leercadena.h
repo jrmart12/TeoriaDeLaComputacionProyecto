@@ -13,5 +13,6 @@ class leercadena
     public:
     void leerCadenaDeArchivoDFA(Automata *automa,string filename);
     void leerCadenaDeArchivoNFA(Automata *automa,string filename);
+    void leerCadenaDeArchivoNFAe(Automata *automa,string filename);
 };
 #endif

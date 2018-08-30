@@ -18,6 +18,7 @@ class Automata
         Estado * inicial;
         vector<Estado*> aceptacion;
         vector<string> simbolos;
+        vector<Estado*> estadosNFAtoDFA;
         int cantidadA;
         int cantidadE;
         void simbolosPossibles(int cantidad, vector<string> simbolo);
@@ -28,6 +29,9 @@ class Automata
         void printDFA();
         bool checkIfCadenaValidaDFA(char cadena[]);
         bool checkIfCadenaValidaNFA(string cadena);
-        int nfa(Estado *temp,vector<Arista*> transiciionesArreglo,string cadena,int cantidad);
+        int NFAtoDFA(int cantidadEstados,int canidadSimbolos);
+        bool checkIfCadenaValidaNFAe(string cadena);
+        int nfae(Estado *temp,vector<Arista*> transiciionesArreglo,string cadena,int cantidad);
+       int nfa(Estado *temp,vector<Arista*> transiciionesArreglo,string cadena,int cantidad);
 };
 #endif
