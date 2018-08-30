@@ -1,6 +1,6 @@
 #include "leercadena.h"
 
-void leercadena::leerCadenaDeArchivo(Automata *automa,string filename){
+void leercadena::leerCadenaDeArchivoDFA(Automata *automa,string filename){
     string cadena;
     char * cad;
     ifstream inFile(filename);
@@ -15,6 +15,24 @@ void leercadena::leerCadenaDeArchivo(Automata *automa,string filename){
         } else{
             cout<<cadena<<" no es aceptada"<<endl;
         }
+    }
+    inFile.close();
+    for(int a = 0; a<automa->estadosA.size(); a++){
+        automa->estadosA.at(a)->transiciones.clear();
+    }
+}
+
+void leercadena::leerCadenaDeArchivoNFA(Automata *automa,string filename){
+    string cadena;
+    char * cad;
+    ifstream inFile(filename);
+    while(inFile>>cadena){
+        bool cc = automa->checkIfCadenaValidaNFA(cadena);
+        if(cc){
+            cout<<cadena<<" es aceptada"<<endl;
+            } else{
+                cout<<cadena<<" no es aceptada"<<endl;
+            }
     }
     inFile.close();
     for(int a = 0; a<automa->estadosA.size(); a++){

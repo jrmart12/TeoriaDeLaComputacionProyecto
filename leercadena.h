@@ -11,6 +11,7 @@ using namespace std;
 class leercadena
 {
     public:
-    void leerCadenaDeArchivo(Automata *automa,string filename);
+    void leerCadenaDeArchivoDFA(Automata *automa,string filename);
+    void leerCadenaDeArchivoNFA(Automata *automa,string filename);
 };
 #endif

@@ -115,7 +115,7 @@ case 1: //DFA
     leercadena *leer = new leercadena();
     cout<<"Ingrese nombre del archivo: ";
     cin>>filename;
-    leer->leerCadenaDeArchivo(automa,filename);
+    leer->leerCadenaDeArchivoDFA(automa,filename);
     break;
 }
     case 2:
@@ -250,6 +250,12 @@ case 1: //DFA
             }                
         }
     }
+    //leere el txt con las cadenas para ver si la cadena es aceptada por el nfa
+    string filename;
+    leercadena *leer = new leercadena();
+    cout<<"Ingrese nombre del archivo: ";
+    cin>>filename;
+    leer->leerCadenaDeArchivoNFA(automa,filename);
     
 
     break;

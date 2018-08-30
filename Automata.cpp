@@ -86,26 +86,26 @@ bool Automata::checkIfCadenaValidaNFA(string cadena){
 
 int Automata::nfa(Estado *temp,vector<Arista*> transiciionesArreglo,string cadena,int cantidad){
     int cont=0;
-    if(cadena.size()==cantidad){
+    if(cantidad==cadena.size()){
         if(temp->aceptacion){
             return 0;
         }else
             return 1;
     }
     for(cont=0;cont<transiciionesArreglo.size();cont++){
-        int x=4;
+        int x=-1;
         Arista *temporalArreglo=transiciionesArreglo.at(cont);
         string es =temporalArreglo->simbolo;
         if(es.at(0)== cadena.at(cantidad)){
-            x=nfa(getEstado(temporalArreglo->estado),getEstado(temporalArreglo->estado)->transiciones,cadena,cantidad++);
+            x=nfa(getEstado(temporalArreglo->estado),getEstado(temporalArreglo->estado)->transiciones,cadena,cantidad+1);
             if(x==3){
                 continue;
             }else if(x==1){
                 continue;
             }else if(x==0){
-                return 0;
+                return x;
             }
         }
     }
-    return 3;
+    return 2;
 }
