@@ -14,6 +14,7 @@ class Automata
     public:
         Automata();
         vector<Estado*> estadosA;
+        vector<Estado*> estadosJuntadosA;
         Estado * inicial;
         vector<Estado*> aceptacion;
         vector<string> simbolos;
@@ -26,5 +27,7 @@ class Automata
         void printArray();
         void printDFA();
         bool checkIfCadenaValidaDFA(char cadena[]);
+        bool checkIfCadenaValidaNFA(string cadena);
+        int nfa(Estado *temp,vector<Arista*> transiciionesArreglo,string cadena,int cantidad);
 };
 #endif

@@ -26,7 +26,7 @@ void Automata::setEstadosFinal(vector <Estado*> estadoFinal){
     }
 }
 
-Estado* Automata::getEstado(int posicion){
+Estado *Automata::getEstado(int posicion){
     return estadosA.at(posicion);
 }
 
@@ -73,4 +73,39 @@ bool Automata::checkIfCadenaValidaDFA(char cadena[]){
             return true;
         }
         return false;    
+}
+
+bool Automata::checkIfCadenaValidaNFA(string cadena){
+    Estado *temp=inicial;
+    if(nfa(temp,inicial->transiciones,cadena,0)==0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+int Automata::nfa(Estado *temp,vector<Arista*> transiciionesArreglo,string cadena,int cantidad){
+    int cont=0;
+    if(cadena.size()==cantidad){
+        if(temp->aceptacion){
+            return 0;
+        }else
+            return 1;
+    }
+    for(cont=0;cont<transiciionesArreglo.size();cont++){
+        int x=4;
+        Arista *temporalArreglo=transiciionesArreglo.at(cont);
+        string es =temporalArreglo->simbolo;
+        if(es.at(0)== cadena.at(cantidad)){
+            x=nfa(getEstado(temporalArreglo->estado),getEstado(temporalArreglo->estado)->transiciones,cadena,cantidad++);
+            if(x==3){
+                continue;
+            }else if(x==1){
+                continue;
+            }else if(x==0){
+                return 0;
+            }
+        }
+    }
+    return 3;
 }

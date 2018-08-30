@@ -3,9 +3,9 @@
 using namespace std;
 
 int main(){
-    cout<< "1. DFA\n";
-    cout<< "2. NFA\n";
-    cout<< "3. NFAe\n";
+    cout<< "1) DFA\n";
+    cout<< "2) NFA\n";
+    cout<< "3) NFAe\n";
     int eleccion;
     cin >> eleccion;
     switch (eleccion)
@@ -195,13 +195,63 @@ case 1: //DFA
     }
     automa->setEstadosFinal(estadoFinal);        
                 
-    vector<Arista *> crearEstados;
-    int cantTransiciones;
-    vector<string> cualesIria;
-    int cantEstadosJuntados;    
-    for(int x=0;x<cantidadEstados;a++){
-        
+    vector<Arista *> crearEstados; //nuevos estados juntados
+    int cantidadTransiciones; //cuantas transiciones hay en la nfs
+    string ss;
+    int cantEstadosJuntados;  //cuantos estados estan juntados para hacer una arista nueva
+    vector<string> estadosJuntos;  //estados juntados para hacer la arista   
+    string estadosjuntostable;
+    for(int x=0;x<cantidadEstados;x++){ //el estado actual
+        for(int y=0;y<cantidadSimbolos;y++){    //el simbolo actual
+            cout<<"cuantos estados iria el simbolo "<<simbolosA[y]<<" con el estado "<<to_string(x)<<endl;
+            cin>>cantidadTransiciones; //a cuantas ira esa transicion
+            cout<<"cuales: "; //cuales serian esos estados
+            for(int a=0;a<cantidadTransiciones;a++){ //poner los estados juntos
+                cin>>ss;
+                estadosJuntos.push_back(ss); //juntar los estados para luego hacer un nuevo estado
+            }
+            for(int a=0;a<estadosJuntos.size();a++){ //for para poder imprimir el nuevo estado   
+                estadosjuntostable+=estadosJuntos[a];
+            }
+            for(int a=0;a<estadosJuntos.size();a++){ //for para crear la nueva arista con los estados ya juntados y con el simbolo en el cual un estado llegara a ellos
+                Arista * nuevaArista = new Arista(stoi(estadosJuntos[a]),automa->simbolos.at(y)); //instanciar la arista con la funcion string to int y su simbolo
+                automa->getEstado(x)->addTransicion(nuevaArista); //agrego una nueva transicion de ese estado a una nueva arista
+                table[x+1][y+1]=estadosjuntostable;  //poner el nuevo estado junto a la table para imprimirla
+            }
+            if(cantidadTransiciones==1){ //si solo hay una transicion la posicion del estadojuntado es 0 
+                Arista * nuevaArista = new Arista(stoi(estadosJuntos[0]),automa->simbolos.at(y)); //creo la nueva arista con el estado juntado en la posicion 0 y el simbolo al que se va a acceder
+                automa->getEstado(x)->addTransicion(nuevaArista);    //agarro el estado y le agrego la transicion con la arista
+            }else{ //sino busco que el nuevo estado no este en el nfa si es asi exite 
+                string nuevoEstado;
+                bool existe = false;
+                for(int x=0;x<automa->estadosA.size();x++){
+                    if(automa->estadosA.at(x)->name==nuevoEstado){
+                        existe=true;
+                        break;
+                    }
+                }
+                if(existe==false){ //si no existe entonces creo un nuevo estado y lo junto a el arreglo de estados juntados y sumo uno a la cantidad de estadosjuntados
+                    Estado * nfaEstado= new Estado(nuevoEstado);
+                    automa->estadosJuntadosA.push_back(nfaEstado);
+                    cantEstadosJuntados++;
+                }
+            }
+            estadosJuntos.clear(); //clear para pasar a otro estado
+            estadosjuntostable.clear(); ///cleear para pasar a otro estado
+        }
     }
+
+    for(int a = 0; a<cantidadEstados+1; a++){//for para imprimir la tabla NFA
+        for(int b = 0; b<cantidadSimbolos+1; b++){
+            if(b!=cantidadSimbolos){
+                cout<<table[a][b]<<' ';
+            } else{
+                cout<<table[a][b]<<endl;
+            }                
+        }
+    }
+    
+
     break;
     }
 
